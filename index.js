@@ -1,34 +1,108 @@
-console.log('this one is gonna be rough dude')
-message = document.querySelector('#message')
+// console.log('this one is gonna be rough dude')
+// message = document.querySelector('#message')
+
+// function addMovie(event) {
+//     event.preventDefault()
+//     inputField = document.querySelector('input')
+//     let movie = document.createElement('li')
+//     let movieTitle = document.createElement('span')
+//     movieTitle.textContent = inputField.value
+//     movie.addEventListener('click', crossOffMovie)
+//     movie.appendChild(movieTitle)
+//     let deleteBtn = document.createElement('button')
+//     deleteBtn.textContent = 'X'
+//     deleteBtn.addEventListener('click', deleteMovie)
+//     movie.appendChild(deleteBtn)
+    
+//     document.querySelector('ul').appendChild(movie)
+//     inputField.value = ''
+// }
+// let form = document.querySelector('form')
+// form.addEventListener('submit', addMovie);
+
+// function deleteMovie(event) {
+//     event.target.parentNode.remove()
+//     message.textContent = 'Movie Deleted'
+// }
+// function crossOffMovie(event) {
+//     event.target.classList.toggle('checked')
+//     if(event.target.classList.contains('checked')){
+//         message.textContent = 'Movie Watched'
+//     } else {
+//         message.textContent = 'Movie Added Back'
+//     }
+// }
+
+// function revealMessage(cb, ) = 
+
+
+
+
+
+document.querySelector("form").addEventListener("submit", addMovie);
+const message = document.querySelector('#message')
 
 function addMovie(event) {
-    event.preventDefault()
-    inputField = document.querySelector('input')
-    let movie = document.createElement('li')
-    let movieTitle = document.createElement('span')
-    movieTitle.textContent = inputField.value
-    movie.addEventListener('click', crossOffMovie)
-    movie.appendChild(movieTitle)
-    let deleteBtn = document.createElement('button')
-    deleteBtn.textContent = 'X'
-    deleteBtn.addEventListener('click', deleteMovie)
-    movie.appendChild(deleteBtn)
-    
-    document.querySelector('ul').appendChild(movie)
-    inputField.value = ''
+  event.preventDefault();
+  let inputField = document.querySelector('input')
+
+  const movie = document.createElement('li')
+
+  const movieTitle = document.createElement("span");
+  movieTitle.textContent = inputField.value;
+  movieTitle.addEventListener("click", crossOffMovie);
+  movie.appendChild(movieTitle)
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "x";
+  deleteBtn.addEventListener("click", deleteMovie);
+  movie.appendChild(deleteBtn);
+
+  const list = document.querySelector("ul");
+  list.appendChild(movie);
+
+  //or
+  //document.querySelector("ul").appendChild(movie)
+
+  inputField.value = ''
 }
-let form = document.querySelector('form')
-form.addEventListener('submit', addMovie);
 
 function deleteMovie(event) {
-    event.target.parentNode.remove()
-    message.textContent = 'Movie Deleted'
+    //intermediate
+    // message.textContent = `${event.target.parentNode.firstChild.textContent} deleted!`
+    
+    //core lab 
+    message.textContent = `Movie deleted!`
+
+    //revealMessage is part of the intermediate instructions
+    revealMessage()
+
+    event.target.parentNode.remove();
 }
+
 function crossOffMovie(event) {
     event.target.classList.toggle('checked')
-    if(event.target.classList.contains('checked')){
-        message.textContent = 'Movie Watched'
+
+    if (event.target.classList.contains('checked') === true) {
+        message.textContent = 'Movie watched!'
+        //interemdiate version
+        //message.textContent = `${event.target.textContent} watched!`
     } else {
-        message.textContent = 'Movie Added Back'
+        message.textContent = 'Movie added back!'
+        //interemdiate version
+        //message.textContent = `${event.target.textContent} added back!`
     }
+
+    //revealMessage will be part of the intermediate instructions
+    revealMessage()
+}
+
+
+//revealMessage will be part of the intermediate instructions
+function revealMessage() {
+    // message.classList.remove('hide')
+    
+    setTimeout(() => {
+        message.classList.add('hide')
+    }, 1000)
 }
